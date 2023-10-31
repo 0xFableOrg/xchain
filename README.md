@@ -19,3 +19,7 @@ Project management is done via GitHub issues for now.
 
 Everyone is welcome to contribute via pull requests, though it is recommended to get in touch
 (norswap [at] gmail) before investing signficant effort in any given direction.
+
+## Contents
+
+- [Direction](./pages/direction.md) — initial opinions & research direction
