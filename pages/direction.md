@@ -48,31 +48,37 @@ layer. These are most of the bridges we are familiar with.
 **Internal bridges** are integrated in the blockchain system — as far as I know this only includes
 rollup bridges.
 
-Cross-chain bridges can also be classified as trustless or trusted.
+Cross-chain bridges can also be classified as trust-minimized or trusted.
 
 **Trusted bridges** introduce additional security assumptions on top of the those of the bridged
 chains. Ultimately, this is also always a multisig, no matter how bridges try to spin things.
 
-**Trusteless bridges** do not introduce additional security assumptions (outside of implementation
-correctness — which is itself a big can of worms). Trustless bridges include bridges from chain A to
-chain B where the consensus (i.e., the "multisig" for PoS) is proven on chain B. This could be done
-by means of a chain-A light client running on chain B, or via a zero-knowledge proof of chain B's
-consensus. They also include rollup bridges.
+**Trust-minimzed bridges** do not introduce additional security assumptions (outside of
+implementation correctness — which is itself a big can of worms). Trust-minimized bridges include
+bridges from chain A to chain B where the consensus (i.e., the "multisig" for PoS) is proven on
+chain B. This could be done by means of a chain-A light client running on chain B, or via a
+zero-knowledge proof of chain B's consensus. They also include rollup bridges.
 
-Caveat: trustless bridges are unable to handle some blockchain upgrades ("hard forks"), in
-particular those that pertain to the consensus mechanism itself. This means there needs to exist a
-mechanism to upgrade the bridge itself, hence introducing new trust assumptions. At best, the
-additional trust can be reduced by including a time delay in the upgrade mechanism which allows
-funds to be withdrawn from the bridge. The only exception to this are L1 → L2 rollup bridges,
-because the L1 chain is the ultimate source of truth. The same isn't true in the reverse direction
-(L2 → L1).
+Caveat: trust-minimized bridges are unable to handle some blockchain upgrades ("hard forks"), in
+particular those that pertain to the consensus mechanism itself. (This is why they're
+"trust-minimized", not "trustless".) This means there needs to exist a mechanism to upgrade the
+bridge itself, hence introducing new trust assumptions. At best, the additional trust can be reduced
+by including a time delay in the upgrade mechanism which allows funds to be withdrawn from the
+bridge. The only exception to this are L1 → L2 rollup bridges, because the L1 chain is the ultimate
+source of truth. The same isn't true in the reverse direction (L2 → L1).
+
+Also note that some popular "light-clients" are not trust-minimized. For instance, light-clients
+that use the Ethereum light-client protocol rely on signatures from the light-client commitee which
+has [much weaker guarantees][altair] than the Ethereum consensus (but is much easier to verify).
+
+[altair]: https://prestwich.substack.com/p/altair
 
 How this taxonomy shakes out today:
 
 - Most bridges today are external and trusted.
-- Light client bridges like most IBC implementations are external and trustless (+ caveat).
+- Light client bridges like most IBC implementations are external and trust-minimized (+ caveat).
 - Rollup bridges are internal in the L1 → L2 direction, external in the L2 → L1 direction, and
-  trustless (+ caveat in the L2 → L1 direction).
+  trust-minimized (+ caveat in the L2 → L1 direction).
 
 All of these provide *eventual delivery* of messages. They guarantee that a transaction can
 eventually be made on the destination chain, but provide no time bounds (excepted of L1 → L2
@@ -101,8 +107,8 @@ internal bridges might work.
 
 ### Investigate Internal Bridges
 
-Trusted bridges add security assumptions. Trustless external bridges are actually really trusted
-because of the need to support chain upgrades.
+Trusted bridges add security assumptions. Trust-minimized external bridges are actually really
+trusted because of the need to support chain upgrades.
 
 Caveat: most bridge hacks have not been due to the trust assumption, though the Ronin Network (Axie
 Infinity) hack (624M$, #1 on the Rekt leaderboard) and the Multichain hack (126M$, #15 on the Rekt
@@ -111,12 +117,12 @@ argument that such issues can be prevented by ensuring multisig decentralization
 this process is transparent. This also shows that bridge implementation has deep security
 implications and is not to be ignored, even though the ultimate trust model is identical.
 
-**Question 1**: Can we design a trustless internal bridge between blockchains (or rollups) that have
-been designed from the get-go to support such a bridge? What would the properties of such a bridge
-be, and what are the trade-offs in this design space?
+**Question 1**: Can we design a trust-minimized internal bridge between blockchains (or rollups)
+that have been designed from the get-go to support such a bridge? What would the properties of such
+a bridge be, and what are the trade-offs in this design space?
 
-Beyond trustless bridging, we might want to go beyond the state of the art and achieve the following
-properties:
+Beyond trust-minimized bridging, we might want to go beyond the state of the art and achieve the
+following properties:
 
 - *Fast* bridging (faster than the finality delay) in the usual case in a way that is still safe.
 - Go beyond eventual delivery message-passing and **guarantee** that the message will be delivered
@@ -128,7 +134,7 @@ properties:
   trigger further atomic message-passing to the source chain (etc). Put differently, enable
   cross-chain transaction that can seemingly call back and forth between both chains.
 
-**Question 2**: Can internal bridge (preferrably trustless, but not necessarily) provide fast
+**Question 2**: Can internal bridge (preferrably trust-minimized, but not necessarily) provide fast
 delivery, atomic message-passing, or atomic execution? What are the trade-offs in the design space?
 
 ### Bridging Models & User Experience
@@ -145,8 +151,8 @@ probably more things that I am not thinking of right now.
 
 The goal there is to design this model in such a way that it is able to support existing external
 bridges (ideally, most/all of them) but is able to be seamlessly upgraded to an internal and/or
-trustless bridge model whenever that becomes available. The same model would also enable switching
-bridge providers if required.
+trust-minimized bridge model whenever that becomes available. The same model would also enable
+switching bridge providers if required.
 
 Examples of existing models include the [deposits]/[withdrawals] model of the OP Stack, [EIP-7833
 (Public Cross Port)][7833], the [Inter-Blockchain Communication protocol (IBC)][IBC] and Hyperlane's
@@ -263,7 +269,7 @@ A few things we should try to collect:
 Additionally, we should try to identify axioms that can guide or constrain the research. For
 instance, in this document, I have posited the following things (amongst others):
 
-- Trustless bridges don't really exist in the presence of hard forks, though mitigations are
+- Trust-minimized bridges don't really exist in the presence of hard forks, though mitigations are
   possible.
 - If safety is to be guaranteed, bridging speed is bound by the finality delay of
   the source chain, unless the destination chain re-orgs whenever the source chain re-orgs (e.g.
@@ -274,7 +280,7 @@ We could also try to identify weaker hypotheses that we can try to disprove, or 
 absence of discomfirming evidence.
 
 We can also try to provide our own tentative distinctions and taxonomies. For instance, in this
-document I distinguished internal vs external bridges, trusted vs trustless bridges, and
+document I distinguished internal vs external bridges, trusted vs trust-minimized bridges, and
 message-passing vs action-request bridges.
 
 ### Step 2: Analysis
