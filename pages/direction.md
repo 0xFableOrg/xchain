@@ -40,12 +40,12 @@ chain B.
 There are bridge designs that only enable the transfer of assets but not of messages. We will talk
 about them later, but in this section we focus on fully-general message-passing bridges.
 
-Cross-chain bridges can be classified as external or internal.
+Cross-chain bridges can be classified as third-party or native.
 
-**External bridges** are not integrated in the blockchain system — they live at the application
+**Third-party bridges** are not integrated in the blockchain system — they live at the application
 layer. These are most of the bridges we are familiar with.
 
-**Internal bridges** are integrated in the blockchain system — as far as I know this only includes
+**Native bridges** are integrated in the blockchain system — as far as I know this only includes
 rollup bridges.
 
 Cross-chain bridges can also be classified as trust-minimized or trusted.
@@ -78,10 +78,10 @@ has [much weaker guarantees][altair] than the Ethereum consensus (but is much ea
 
 How this taxonomy shakes out today:
 
-- Most bridges today are external and trusted.
-- Light client bridges like most IBC implementations are external and trust-minimized (+ caveat).
-- Rollup bridges are internal in the L1 → L2 direction, external in the L2 → L1 direction, and
-  trust-minimized (+ caveat in the L2 → L1 direction).
+- Most bridges today are third-party and trusted.
+- Light client bridges like most IBC implementations are third-party and trust-minimized (+ upgrade
+  caveat).
+- Rollup bridges are native and trust-minimized (+ upgrade caveat in the L2 → L1 direction).
 
 All of these provide *eventual delivery* of messages. They guarantee that a transaction can
 eventually be made on the destination chain, but provide no time bounds (excepted of L1 → L2
@@ -89,9 +89,9 @@ bridging, where L2 transaction inclusion is bounded but the bound is large).
 
 They also do not provide atomicity, which is the property that the transaction on the source chain
 succeeds only if the transaction on the destination chain also succeeds. This is a very difficult
-property to attain, and can only be achieved in full generality via internal bridges.
+property to attain, and can only be achieved in full generality via native bridges.
 
-Any external bridge must also contend with possible re-orgs of the source chain, meaning that the
+Any third-party bridge must also contend with possible re-orgs of the source chain, meaning that the
 minimal safe delay for cross-chain transfers is the finality delay of the source chain. This isn't
 an issue for L1 → L2 rollup bridges as the L2 reorgs when L1 reorgs, but the L2 → L1 direction is
 actually much slower than the finality delay, as it needs to wait for the challenge period.
@@ -106,11 +106,11 @@ questions to answer to help us figure out how to get there.
 The various questions are presented in an order that eases presentation, and do not necessarily
 reflect priority. There is a certain amount of cross-dependency between some questions anyway. For
 instance, to know what a good messaging model looks like, it would help having an idea of how
-internal bridges might work.
+native bridges might work.
 
-### Investigate Internal Bridges
+### Investigate Native Bridges
 
-Trusted bridges add security assumptions. Trust-minimized external bridges are actually really
+Trusted bridges add security assumptions. Trust-minimized third-party bridges are actually really
 trusted because of the need to support chain upgrades.
 
 Caveat: most bridge hacks have not been due to the trust assumption, though the Ronin Network (Axie
@@ -120,7 +120,7 @@ argument that such issues can be prevented by ensuring multisig decentralization
 this process is transparent. This also shows that bridge implementation has deep security
 implications and is not to be ignored, even though the ultimate trust model is identical.
 
-**Question 1**: Can we design a trust-minimized internal bridge between blockchains (or rollups)
+**Question 1**: Can we design a trust-minimized native bridge between blockchains (or rollups)
 that have been designed from the get-go to support such a bridge? What would the properties of such
 a bridge be, and what are the trade-offs in this design space?
 
@@ -137,13 +137,13 @@ following properties:
   trigger further atomic message-passing to the source chain (etc). Put differently, enable
   cross-chain transaction that can seemingly call back and forth between both chains.
 
-**Question 2**: Can internal bridge (preferrably trust-minimized, but not necessarily) provide fast
+**Question 2**: Can native bridges (preferrably trust-minimized, but not necessarily) provide fast
 delivery, atomic message-passing, or atomic execution? What are the trade-offs in the design space?
 
 ### Bridging Models & User Experience
 
-Designing and taking advantage of internal bridges might be a long-term endeavour. In the
-short-term, external bridges are and will be used. There is great interest from OP Labs (and I think
+Designing and taking advantage of native bridges might be a long-term endeavour. In the
+short-term, third-party bridges are and will be used. There is great interest from OP Labs (and I think
 the Optimism community at large) to propose a "canonical" bridging model.
 
 This "model" would take the form of a cross-chain message-passing format. It specifies the interface
@@ -152,8 +152,8 @@ chain. It also specifies an interface for verification via the actual bridge pro
 should probably say something of relaying messages, paying gas costs, replaying failed mesages, and
 probably more things that I am not thinking of right now.
 
-The goal there is to design this model in such a way that it is able to support existing external
-bridges (ideally, most/all of them) but is able to be seamlessly upgraded to an internal and/or
+The goal there is to design this model in such a way that it is able to support existing third-party
+bridges (ideally, most/all of them) but is able to be seamlessly upgraded to an native and/or
 trust-minimized bridge model whenever that becomes available. The same model would also enable
 switching bridge providers if required.
 
@@ -262,7 +262,7 @@ A few things we should try to collect:
 - A list of bridge, and where we can learn about their properties.
     - If available, evaluations of them, or comparisons between them, especially with respect to user
       experience and developer experience.
-- Existing investigations & implementations of internal bridge systems. This will include work on
+- Existing investigations & implementations of native bridge systems. This will include work on
   shared sequencing and execution sharding, amongst other things.
 - Existing bridging models in the sense of question 3.
 - Any kind of existing set of criteria or taxonomies for comparing and classifying bridges and
@@ -278,13 +278,13 @@ instance, in this document, I have posited the following things (amongst others)
 - If safety is to be guaranteed, bridging speed is bound by the finality delay of
   the source chain, unless the destination chain re-orgs whenever the source chain re-orgs (e.g.
   rollups).
-- Fully-general atomic message-passing is not achievable with external bridges.
+- Fully-general atomic message-passing is not achievable with third-party bridges.
 
 We could also try to identify weaker hypotheses that we can try to disprove, or treat as true in the
 absence of discomfirming evidence.
 
 We can also try to provide our own tentative distinctions and taxonomies. For instance, in this
-document I distinguished internal vs external bridges, trusted vs trust-minimized bridges, and
+document I distinguished native vs third-party bridges, trusted vs trust-minimized bridges, and
 message-passing vs action-request bridges.
 
 ### Step 2: Analysis
