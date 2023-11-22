@@ -33,7 +33,7 @@ assumption that either transaction data (all rollups) or state diffs (zk rollups
 Optimistic rollups add the assumption that there is at least one honest validator (and in the final
 vision, the validator set is permissionless).
 
-We define cross-chain bridges as systems that allows message passing between two chains, i.e. a
+We define cross-chain bridges as systems that allow message passing between two chains, i.e. a
 system that enables a transaction on chain A to trigger (or at least authorize) a transaction on
 chain B.
 
@@ -70,8 +70,8 @@ The only exception to this are L1 → L2 rollup bridges, because the L1 chain is
 of truth and no fraudulent upgrade (a social layer determination!) can prevent an honest node from
 interpreting these deposits "correctly". The same isn't true in the reverse direction (L2 → L1).
 
-Also note that some popular "light-clients" are not trust-minimized. For instance, light-clients
-that use the Ethereum light-client protocol rely on signatures from the light-client commitee which
+Also note that some popular "light clients" are not trust-minimized. For instance, light clients
+that use the Ethereum light client protocol rely on signatures from the light clients commitee which
 has [much weaker guarantees][altair] than the Ethereum consensus (but is much easier to verify).
 
 [altair]: https://prestwich.substack.com/p/altair
@@ -135,7 +135,7 @@ following properties:
 - Provide atomic execution, which we can conceptualize as recursive atomic message-passing: a
   transaction on the destination chain resulting from atomic message-passing being able to itself
   trigger further atomic message-passing to the source chain (etc). Put differently, enable
-  cross-chain transaction that can seemingly call back and forth between both chains.
+  cross-chain transactions that can seamlessly call back and forth between both chains.
 
 **Question 2**: Can native bridges (preferrably trust-minimized, but not necessarily) provide fast
 delivery, atomic message-passing, or atomic execution? What are the trade-offs in the design space?
@@ -159,8 +159,8 @@ switching bridge providers if required.
 
 Examples of existing models include the [deposits]/[withdrawals] model of the OP Stack, [EIP-7833
 (Public Cross Port)][7833], the [Inter-Blockchain Communication protocol (IBC)][IBC] and Hyperlane's
-[Mailbox/ISM model][hyperlane]. The OP Stack model is specific to that system, but the two others
-allow plugging in different bridge providers. 
+[Mailbox/ISM model][hyperlane]. The OP Stack model is specific to that system, but the others
+allow plugging in different bridge providers (WIP for IBC).
 
 (Before anyone gets angry, this is not an exhaustive list, and there are definitely other models out
 there, though for those I am aware of it is less clear that those allow arbitrary bridge providers.)
