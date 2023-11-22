@@ -64,8 +64,11 @@ particular those that pertain to the consensus mechanism itself. (This is why th
 "trust-minimized", not "trustless".) This means there needs to exist a mechanism to upgrade the
 bridge itself, hence introducing new trust assumptions. At best, the additional trust can be reduced
 by including a time delay in the upgrade mechanism which allows funds to be withdrawn from the
-bridge. The only exception to this are L1 → L2 rollup bridges, because the L1 chain is the ultimate
-source of truth. The same isn't true in the reverse direction (L2 → L1).
+bridge.
+
+The only exception to this are L1 → L2 rollup bridges, because the L1 chain is the ultimate source
+of truth and no fraudulent upgrade (a social layer determination!) can prevent an honest node from
+interpreting these deposits "correctly". The same isn't true in the reverse direction (L2 → L1).
 
 Also note that some popular "light-clients" are not trust-minimized. For instance, light-clients
 that use the Ethereum light-client protocol rely on signatures from the light-client commitee which
