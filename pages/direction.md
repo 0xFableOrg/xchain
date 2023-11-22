@@ -217,7 +217,7 @@ risk to capture the opportunity. This implies a model that rewards relayers for 
 relayers can be maintained? Are there any existing network of relayers that could be leveraged for
 this task?
 
-Note: answering questions 1-4 might uncovere a need for relaying there too.
+Note: answering questions 1-4 might uncover a need for relaying there too.
 
 In the case of token bridging, we note that there are significant issues with liquidity in this
 model: relayers must maintain inventory on all possible destination chains. In a world of many small
