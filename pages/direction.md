@@ -218,7 +218,8 @@ claim the reward.
 This model also enables faster bridging for permissionless actions by letting relayers take on
 finality risk on a case-by-case basis. They can consider that a re-org after a certain delay or
 whenever certain guarantees have been met is unlikely enough that they are willing to take on the
-risk to capture the opportunity. This implies a model that rewards relayers for prompt execution.
+risk to capture the opportunity. Relayers also take a risk on the safety and liveness of the A → B
+bridge. This implies a model that rewards relayers for prompt execution.
 
 **Question 6**: Can we flesh out a full incentive-compatible model for action-request bridges?
 
