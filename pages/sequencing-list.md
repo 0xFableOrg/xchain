@@ -10,6 +10,8 @@ Note: the maturity of these projects varies, and the documentation is usually no
 - [Astria](https://docs.astria.org/)
   - [Astria Development Cluster](https://blog.astria.org/introducing-the-astria-development-cluster/)
 - [(Anoma) Chimera Chains](https://anoma.net/blog/chimera-chains)
+- [Dymension Hub](https://docs.dymension.xyz/learn/dymension-hub/application)
+  - L1 + DA, interop using IBC.
 - [Espresso](https://docs.espressosys.com)
   - [Writeup on the Espresso Sequencer](https://hackmd.io/@EspressoSystems/EspressoSequencer)
   - [Writeup on Shared Sequencing](https://hackmd.io/@EspressoSystems/SharedSequencing)
@@ -29,3 +31,4 @@ Note: the maturity of these projects varies, and the documentation is usually no
   - [Espresso Martini](https://forum.aztec.network/t/proposal-sequencer-selection-espresso-martini/486)
 - [Proof of Governance](https://dba.mirror.xyz/UTPfxWe65dYrUu_RJX-5VkAJypFRyw3AZh6m0dRXYZk) ([Video](https://www.youtube.com/watch?v=toPd1vgHjVE))
 - [Cross-ORU Contingent Blocks](https://prestwich.substack.com/p/contingency)
+- [Based Sequencing](https://www.youtube.com/watch?v=YqiCpLd8ecM&t=1964s)
