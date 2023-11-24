@@ -9,4 +9,7 @@ integrate the bridge.
 - [Li.fi (Aggregator)](https://docs.li.fi/)
 - [Interport (Aggregator)](https://docs.interport.fi/)
 - [Rubic (Aggregator)](https://docs.rubic.finance/)
-- [Squid (xchain swap on Axelar)](https://docs.widget.squidrouter.com/) 
+- [Squid (xchain swap on Axelar)](https://docs.widget.squidrouter.com/)
+- [Socket (Liquidity Layer)](https://docs.socket.tech/)
+- [Orby (Intent Engine)](https://docs.orblabs.xyz/)
+- [SUAVE](https://collective.flashbots.net/c/suave/27)

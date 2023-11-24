@@ -13,6 +13,7 @@ different non-EVM bridging models should also be included.
 - [Asterizm](https://docs.asterizm.io)
 - [Axelar](https://docs.axelar.dev/)
 - [Berkeley RDI zkBridge](https://rdi.berkeley.edu/zkp/zkBridge/zkBridge.html)
+- [Bungee (Socket)](https://docs.socket.tech/)
 - [Celer cBridge](https://cbridge-docs.celer.network/)
   - [Analysis from Sept 2021](https://twitter.com/bkiepuszewski/status/1437031523455229964)
 - [Beamer](https://docs.beamerbridge.com/)

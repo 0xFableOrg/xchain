@@ -9,6 +9,9 @@ bridge.
 - [ERC-7533 - Public Cross Port](https://github.com/ethereum/ERCs/pull/62/files)
 - [ERC-5164 - Cross-Chain Execution](https://eips.ethereum.org/EIPS/eip-5164)
   - Seems on the whole less complete than 7533.
+- [EIP-6170 - Cross-Chain Messaging Interface](https://eips.ethereum.org/EIPS/eip-6170)
+  - Compared to 7533 this is simpler, the messages are simply bytes (not a hash) and there is no
+    provision for message bundling (but all of this can be built on top).
 - [Hyperlane](https://docs.hyperlane.xyz/)
 - [IBC](https://github.com/cosmos/ibc)
 - [Optimism Bridge](https://github.com/ethereum-optimism/optimism/tree/develop/specs)
@@ -17,6 +20,8 @@ bridge.
     [bridges](https://github.com/ethereum-optimism/optimism/blob/develop/specs/bridges.md),
     [deposits](https://github.com/ethereum-optimism/optimism/blob/develop/specs/deposits.md) and
     [withdrawals](https://github.com/ethereum-optimism/optimism/blob/develop/specs/withdrawals.md).
+- [MultiMessageAggregation](https://github.com/MultiMessageAggregation/multibridge)
+  - Send a cross-chain message through multiple bridges.
 
 ## Non-Generic Models
 
