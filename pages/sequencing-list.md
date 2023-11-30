@@ -18,7 +18,7 @@ Note: the maturity of these projects varies, and the documentation is usually no
   - [Espresso Sequencer Paper](https://github.com/EspressoSystems/HotShot/blob/main/docs/espresso-sequencer-paper.pdf)
 - [NodeKit SEQ](https://nodekit.gitbook.io/nodekit-documentation/)
 - [Radius](https://docs.theradius.xyz/)
-    - [Writeup on Raidus Sequencer](https://hackmd.io/@zeroknight/radius_decentralizing_rollup_sequencers)
+    - [Writeup on Radius Sequencer](https://hackmd.io/@zeroknight/radius_decentralizing_rollup_sequencers)
 
 ## Proposals
 
@@ -39,5 +39,5 @@ Note: the maturity of these projects varies, and the documentation is usually no
 
 ## Research Papers
 
-- [Buying Time: Latency Racing vs. Bidding for Transaction Ordering](https://arxiv.org/pdf/2306.02179.pdf)
+- [Buying Time: Latency Racing vs. Bidding for Transaction Ordering (Timeboost)](https://arxiv.org/pdf/2306.02179.pdf)
 - [SoK: Decentralized Sequencers for Rollups](https://arxiv.org/pdf/2310.03616.pdf)
