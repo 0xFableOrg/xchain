@@ -17,6 +17,6 @@ Bridges](./direction.md#token-bridging--action-request-bridges) section of the
 
 ## Research
 
-- [Cross-chain Deals and Adversarial Commerce]https://muratbuffalo.blogspot.com/2019/12/cross-chain-deals-and-adversarial.html)
+- [Cross-chain Deals and Adversarial Commerce](https://muratbuffalo.blogspot.com/2019/12/cross-chain-deals-and-adversarial.html)
   - [video](https://www.youtube.com/watch?v=YF6NrGstF1E)
   - two part lecture: [one](https://www.youtube.com/watch?v=CRPNkPpbNwA), [two](https://www.youtube.com/watch?v=23xYS0rlrkc)
