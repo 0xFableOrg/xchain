@@ -37,7 +37,9 @@ Everyone is welcome to contribute via pull requests, though it is recommended to
   - [Bridge Research List](./pages/bridge-research-list.md)
     — a list of investigation into innovative bridging solutions
   - [DevEx List](./pages/devex-list.md)
-    — a list of existing SDKs and modalities for cross-chain bridging  - 
+    — a list of existing SDKs and modalities for cross-chain bridging
+  - [Sharding List](./pages/sharding-list.md)
+    — a list of sharding proposals
   - [Axiom List](./pages/axiom-list.md)
     — a list of statements we consider to be true
   - [Hypothesis List](./pages/hypothesis-list.md)
