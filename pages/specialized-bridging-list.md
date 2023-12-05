@@ -14,3 +14,9 @@ Bridges](./direction.md#token-bridging--action-request-bridges) section of the
 - [Hop](https://docs.hop.exchange/)
 - [Rari Nova (Deprecated)](https://github.com/Rari-Capital/nova)
 - [Pheasant Network](https://docs.pheasant.network/)
+
+## Research
+
+- [Cross-chain Deals and Adversarial Commerce]https://muratbuffalo.blogspot.com/2019/12/cross-chain-deals-and-adversarial.html)
+  - [video](https://www.youtube.com/watch?v=YF6NrGstF1E)
+  - two part lecture: [one](https://www.youtube.com/watch?v=CRPNkPpbNwA), [two](https://www.youtube.com/watch?v=23xYS0rlrkc)
