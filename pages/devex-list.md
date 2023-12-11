@@ -20,3 +20,4 @@ integrate the bridge.
 - [Orby (Intent Engine)](https://docs.orblabs.xyz/)
     - I like the code examples but their docs seem to be pretty lacking which is a result of the project being pretty early stage. They seem to be permissioned for new chains as well. 
 - [SUAVE](https://collective.flashbots.net/c/suave/27)
+    - This is tricky to discuss because I don't have clear examples of how projects used this for bridging. 
