@@ -56,7 +56,7 @@ a whole other chain on its VM).
 
 ZK proofs and light client proofs of consensus are feasible, but have limited scope: only fairly
 simple system (e.g. Tendermint) can be supported. A PoS system like Ethereum's is too expensive and
-requires keeping a lot of state. There is still no implement zk-proving system for Ethereum PoS.
+requires keeping a lot of state. There is still no implemented zk-proving system for Ethereum PoS.
 Rollups have no consensus, so this option isn't available to them either.
 
 Sharding / enshrined rollups techniques could be used to enable effective proofs of consensus for
