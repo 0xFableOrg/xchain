@@ -75,7 +75,7 @@ only works with zk proof of execution, and only with data that has been finalize
 
 If something faster than finality is required, then native systems are required, introducing
 cross-dependency between the two chains (e.g. such that one reverts if the other reverts). For
-action-request bridges (e.g. token bridges), it's possible to push the risk of reversion to relayer
+action-request bridges (e.g. token bridges), it's possible to push the risk of reversion to relayers
 and liquidity providers (who are compensated via a fee) — without going native.
 
 Sharding / enshrined rollups are native systems by nature.
