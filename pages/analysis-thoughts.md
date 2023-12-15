@@ -46,7 +46,7 @@ Regarding ZK proofs of execution, Polygon
 [claims](https://twitter.com/jbaylina/status/1603144831978831872?t=QyGfOu3Htsc_42c8pw5Szw) to have a
 proving system that is fast enough to use in practice (2.5 min proving time on 7$/hour AWS hardware
 for 10M gas — Ethereum blocks are 15M/30M gas target/limit every 12s, and Optmism blocks are 5M/30M
-every 2s). This relies on running a zkEVM stack, and such stack are (form the assessment of
+every 2s). This relies on running a zkEVM stack, and such stacks are (from the assessment of
 independent researchers) really hard or even impossible to run for third-parties (key components not
 open-source, etc). In the medium-term using such proofs + a multisig system (to ward against zk
 implementation bugs) seems like the ideal option if designing a system from scratch.
