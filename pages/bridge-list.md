@@ -32,7 +32,6 @@ different non-EVM bridging models should also be included.
 - [Nomad](https://docs.nomad.xyz/the-nomad-protocol/overview)
 - [Optics](https://github.com/celo-org/optics-monorepo)
 - [OrbitChain (IBC)](https://docs.orbitchain.io/)
-- [Orbiter Finance](https://docs.orbiter.finance/)
 - [Pheasant Network](https://docs.pheasant.network/)
 - [Rainbow Bridge](https://doc.aurora.dev/bridge/bridge-overview/)
 - [Stargate](https://stargateprotocol.gitbook.io/) ([Layer 0](https://layerzero.gitbook.io/docs/)) 
