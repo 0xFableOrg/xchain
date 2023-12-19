@@ -10,6 +10,7 @@ different non-EVM bridging models should also be included.
 
 - [Across](https://docs.across.to/)
 - [AllBridge](https://docs.allbridge.io/)
+- [AnyToAny (CryptoLink)](https://docs.cryptolink.tech/)
 - [Asterizm](https://docs.asterizm.io)
 - [Axelar](https://docs.axelar.dev/)
 - [Berkeley RDI zkBridge](https://rdi.berkeley.edu/zkp/zkBridge/zkBridge.html)

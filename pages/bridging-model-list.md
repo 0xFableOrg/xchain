@@ -14,6 +14,8 @@ bridge.
     provision for message bundling (but all of this can be built on top).
 - [Hyperlane](https://docs.hyperlane.xyz/)
 - [IBC](https://github.com/cosmos/ibc)
+  - Not really a "model", but see also [Polymer (IBC EVM Network)](https://www.polymerlabs.org/)
+    for an EVM instantiation.
 - [Optimism Bridge](https://github.com/ethereum-optimism/optimism/tree/develop/specs)
   - In particular,
     [messengers](https://github.com/ethereum-optimism/optimism/blob/develop/specs/messengers.md),
@@ -23,7 +25,9 @@ bridge.
 - [MultiMessageAggregation](https://github.com/MultiMessageAggregation/multibridge)
   - Send a cross-chain message through multiple bridges.
 - [Hashi](https://hashi-doc.gitbook.io/hashi/v0.1/introduction)
-  - Allow for cross-chain messaging by sending block headers aggregated through multiple bridges  
+  - Allow for cross-chain messaging by sending block headers aggregated through multiple bridges
+- [CryptoLink](https://docs.cryptolink.tech/solutions/build-cross-chain-products) 
+- [Sygma](https://docs.buildwithsygma.com/) 
 
 ## Non-Generic Models
 
