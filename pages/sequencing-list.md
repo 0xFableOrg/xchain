@@ -19,6 +19,7 @@ Note: the maturity of these projects varies, and the documentation is usually no
 - [NodeKit SEQ](https://nodekit.gitbook.io/nodekit-documentation/)
 - [Radius](https://docs.theradius.xyz/)
     - [Writeup on Radius Sequencer](https://hackmd.io/@zeroknight/radius_decentralizing_rollup_sequencers)
+- [NEAR + EigenLayer Collab](https://pages.near.org/blog/near-foundation-and-eigen-labs-partner-to-enable-faster-cheaper-web3-transactions-for-ethereum-rollups-via-eigenlayer/) (announced only) 
 
 ## Proposals
 
