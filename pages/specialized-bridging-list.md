@@ -14,6 +14,9 @@ Bridges](./direction.md#token-bridging--action-request-bridges) section of the
 - [Hop](https://docs.hop.exchange/)
 - [Rari Nova (Deprecated)](https://github.com/Rari-Capital/nova)
 - [Pheasant Network](https://docs.pheasant.network/)
+- [Orbiter Finance](https://docs.orbiter.finance/)
+- [Owlto Finance](https://docs.owlto.finance/)
+- [Layerswap](https://docs.layerswap.io/)
 
 ## Research
 
