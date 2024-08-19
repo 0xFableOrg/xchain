@@ -1,7 +1,7 @@
 # Bridging Model List
 
 A list for existing and proposed [bridging
-models](/pages/direction.md#bridging-models--user-experience). These models include cross-chain
+models](/references/direction.md#bridging-models--user-experience). These models include cross-chain
 messaging formats, as well as the relaying system. For instance, in the context of EVM third-party
 bridges, the messaging format would mostly be the Solidity ABI of the contracts on both sides of the
 bridge.
