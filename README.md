@@ -218,8 +218,8 @@ considerably weaker than the Ethereum consensus. [Read here][altair] for more de
 [altair]: https://prestwich.substack.com/p/altair
 
 (2) The key difference between a light client and full client is that a full client also verifies
-execution, and as such, is capable of participating in "social consensus": it may choose the to
-follow the set of rules (the state transition function) that it considers legimitate.
+execution, and as such, is capable of participating in "social consensus": it may choose to follow
+the set of rules (the state transition function) that it considers legimitate.
 
 **Validator bridges** are systems where a set of validators are commissioned to validate the source
 chain, and must attest to the authenticity of the information (whether it is a state root,
@@ -234,8 +234,8 @@ destination chain that did not originate from the source chain, anybody can post
 (signed!) message to the source chain, causing the relayer to be slashed.
 
 This system is only economically secure, and must be used in a way where the system can function
-with forged messages, as well as ensure that the loss incurred by a forged message is lesser than
-the relayer's bond. In practice, this probably entails rate-limiting relayers in terms of economic
+with forged messages, as well as ensure that the loss incurred by a forged message is lower than the
+relayer's bond. In practice, this probably entails rate-limiting relayers in terms of economic
 value.
 
 There is also a question of how to ensure relayers actually deliver messages. At a minimum, we could
@@ -428,7 +428,7 @@ or the cost of censoring challenges for that period.
 Validator bridges derive their safety from the decentralization of the validator set, which can be
 analyzed in the same way as one analyzes the decentralization of a blockchain.
 
-Slashing bridges and optmistic bridges require relayers to lay down a bond, while validator bridges
+Slashing bridges and optimistic bridges require relayers to lay down a bond, while validator bridges
 require relayers to be part of a permissioned set. Unless new actors are voted in by the existing
 ones, the mechanism to select the permissioned actors (e.g. a governance vote) adds its assumptions
 to the bridge's safety.
@@ -486,9 +486,9 @@ independent of the bridge design.
 
 Additionally, in optimistic bridges, an extended liveness failure of the source chain could enable a
 malicious relayer to challenge messages on the destination chain without incurring slashing, hence
-causing a liveness issue, but not a safety issue. This is similarly to the safety issue of a
-slashing bridge, and the same mitigation applies: make the relayer bond withdrawal delay long enough
-that this is unlikely. 
+causing a liveness issue, but not a safety issue. This is similar to the safety issue of a slashing
+bridge, and the same mitigation applies: make the relayer bond withdrawal delay long enough that
+this is unlikely.
 
 Bridges might include built-in mechanisms to pause the bridge. This is generally desirable, to help
 combat hacks and other operational failures. However, care must be taken to ensure that this
@@ -505,9 +505,9 @@ Embedded bridges are unique in not requiring relayers, as the relayers are effec
 validators and/or sequencers of the chain.
 
 Relayers can be made fully permissionless in light client bridges, reverse bridges, validator
-bridges, and rollup bridges (although that is not the case for any rollup today: posting the state
-root is the purview of the sequencer, whereas users "relay" messages by posting proofs against a
-finalized state root).
+bridges, and rollup bridges (although that is not the case for some rollups today, on which posting
+the state root is the purview of the sequencer, whereas users "relay" messages by posting proofs
+against a finalized state root).
 
 In the permissioned case, liveness requires relayers to be up and running. For validator bridges
 (whether permissoned or permissionless), a voting quorum of validators must be live.
@@ -522,8 +522,8 @@ In general, liveness is improved by decentralizing the relayer and validator set
 that a chain's validator set can be decentralized: geographical diversity, jurisdictional diversity,
 elimination of shared effective controls, client diversity, ...
 
-Finally, operational relayers still have to "show up" to relay messages, which they may not do in
-the absence of proper incentives. This will be discussed in the [Incentives &
+Finally, technically operational relayers still have to "show up" to relay messages, which they may
+not do in the absence of proper incentives. This will be discussed in the [Incentives &
 Costs](#incentives--costs) section.
 
 ### Latency
@@ -550,8 +550,8 @@ period.
 
 Proof-of-execution bridges must allow for proving time, which, at the time of writing, cannot
 measure up to block production time. Provers are now able to prove an Ethereum block in [a few tens
-of minutes][zkevm2] (and [as fast as a few minutes][zkevm3] if substitute Ethereum's Keccak hash function
-for a prover-friendly hash function like Poseidon).
+of minutes][zkevm2] (and [as fast as a few minutes][zkevm3] if substituting Ethereum's Keccak hash
+function for a prover-friendly hash function like Poseidon).
 
 I can't resist a quick sidebar into the world of zero-knowledge proof generation.
 
@@ -570,7 +570,7 @@ More recently, Polygon zkEVM has announced [type 1 proving][zkevm], which is abl
 Ethereum blocks that use the Keccak hash function. Their [self-reported benchmarks][zkevm2] report
 proving a 10M gas block in 44 minutes for ~0.23$ and a 12M gas block in 78 minutes for ~0.41$. I
 have heard rumblings that new "precompiles" for Keccak could bring those time down significantly
-(this wasn't Polygon-specific, but the underlying knowledgy can speed up both kind of provers).
+(this wasn't Polygon-specific, but the underlying technology can speed up both kind of provers).
 
 Note that the cost and latency of proving are two faces of the same coin, as a lot of the
 computation that goes into proof generation is highly parralelizable, meaning one can trade off cost
@@ -621,10 +621,13 @@ light client bridges as well as rollup bridges.
 In validator bridge, it is only necessary to obtain a signature from the validators to be able to
 relay. Alternatively, the validators may only decide to relay state roots, in which case a relayed
 message must include a proof-of-inclusion against the state root (which anybody should be able to
-generate). The same principle applies to rollup bridges: a permissioned entity (the sequencer) must
-post the state root, and in the proof-of-execution case, a prover must also post a proof for the
-state root (this can be permissionless, though it is not expected that users will take on this
-burden). Then, anybody can relay a message by proving it against the state root.
+generate). The same principle applies to rollup bridges: someone needs to relay the chain's state
+root. For some rollups like OP-stack-based rollups, this is permissionless, in some others it must
+be the sequencer. The state root needs to be validated (by submitting a zk proof or waiting for the
+challenge window), then anybody can relay a message by proving it against the state root.
+
+For proof-of-execution bridges, a prover must post a proof for the state root. This can be
+permissionless, though it is not expected that users will take on this burden.
 
 For light client bridges, someone needs to relay all the consensus-relevant information (usually an
 aggregated signature) to the destination chain. This can also be permissionless, though it is not
@@ -645,10 +648,10 @@ messages, their usefulness often lay in guarantee that messages are automaticall
 the relayer performs a costly action (e.g. transfer a token on the destination chain, in exchange
 for receipt of a token on the source chain).
 
-Whenever relayers are expected, they need to be paid as they are taking on costs. Most of these
-costs consists of transaction fees on the destination chain. In addition, relayers expect to make
-some profit. In the next section we will describe the issue that arise from the variability in the
-transaction fees on the destination chains.
+Whenever relayers are expected, they need to be paid as they are taking on costs. An important part
+of these costs consists of transaction fees on the destination chain. In addition, relayers expect
+to make some profit. In the next section we will describe the issue that arise from the variability
+in the transaction fees on the destination chains.
 
 #### Handling Variable Destination Chain Fees
 
@@ -664,8 +667,9 @@ determination is easy.)
 
 In practice, it is easier to pay the relayer's fee on the destination chain. This is because the
 payment can be unlocked as part of the transaction that delivers the message. The bridge must thus
-make sure that the destination chain has liquidity to pay the relayer. If the bridge enables token
-bridging, the relay transaction may implicitly bridge tokens over to pay the relayer.
+make sure that the destination chain has liquidity to pay the relayer. If the bridge focuses on
+token bridging, the relay transaction may deduce the destination chain fee from the tokens being
+bridged.
 
 If fees are collected on the source chain and paid on the destination chain, fee estimation is
 required. This cannot be done on the source chain, and must thus be carried off-chain, and included
@@ -742,9 +746,6 @@ latency issues.
 
 We haven't seen much discussion on challenge incentivization in rollups, but it is expected that the
 many "natural" node operators (exchanges, RPC providers, block explorers) could take on this role.
-In practice, no optimistic rollup has permissionless challengers yet, with Arbitrum relying on a set
-of permissioned entities (who might be paid for providing this service), and the Optimism fault
-proof system currently only deployed on testnet.
 
 As said earlier, we do not know of any pure slashing bridge deployment.
 
@@ -1172,8 +1173,8 @@ is even more relevant.
 
 ### Atomic Execution
 
-As discussed above, we consider atomic synchronous execution with a single message sent to a single
-destination chain and no recursion.
+As discussed above, we consider atomic execution (synchronous and asynchronous) with a single
+message sent to a single destination chain and no recursion.
 
 The main drawback of atomic execution is that even in the atomic asynchronous execution model,
 synchronous cross-chain node communication is required.
@@ -1221,11 +1222,14 @@ volatility. If the system is restricted to transactions that always work, it's n
 than atomic inclusion. They also mention griefing by locking a lot of state, but fail to touch on
 the issue of locking *valuable* state.
 
-[agglayer-old]: https://web.archive.org/web/20240228124632/https://docs.polygon.technology/learn/agglayer/
-[agglayer]: https://docs.polygon.technology/cdk/agglayer/overview/
+**CORRECTION:** The discussion of AggLayer in this document is based on previously published
+documents. I have since then been informed that the design changed and AggLayer will not feature
+state locking. At the time of publication, there isn't any documentation available that would enable
+a meaningful discussion of AggLayer. Everything that is said about the AggLayer does however apply
+in full generality to state locking system, and as such is still relevant.
 
-One notable distinction of AggLayer, however, is that unlike the other solutions we will discuss in
-this section, it is actually being actively implemented.
+[agglayer-old]: https://web.archive.org/web/20240228124632/https://docs.polygon.technology/learn/agglayer/
+[agglayer]: https://web.archive.org/web/20240815013104/https://docs.polygon.technology/cdk/agglayer/overview/
 
 [Chimera chains][chimera] are an alternative that also uses state locking. In this case, the state
 is partitioned into a "base state partition" and a set of "chimera state partitiosn" which is meant
@@ -1245,7 +1249,7 @@ the validators of the various chains participating in the chimera chain. This co
 rollups by having all rollups (i.e. their sequencer) "run a node" for all the chimera chains they
 participate in, and having them rotate the block proposer for the chain.
 
-This would necessarily be a permissioned ssytem, as it is unlikely sequencers would want to run a
+This would necessarily be a permissioned system, as it is unlikely sequencers would want to run a
 chimera chain with an unknown rollup who could grief them by comitting a ton of bogus state or
 transactions to their chimera chain.
 
@@ -1416,8 +1420,8 @@ In particular, the main use-case for cross-chain transactions is token (both fun
 bridging and swapping. Think of our running swap-bridge-buy-NFT example here. I believe these
 transactions can be made atomic without too much downside.
 
-We can outline a solution for this that leverages state locking, as long as locking is only required
-on the destination chain.
+We can outline a solution for this that leverages synchronous state locking, as long as locking is
+only required on the destination chain.
 
 The main issue of state locking is lock contention when multiple chains are trying to write to the
 same state. We can alleviate this issue by using escrow contracts holding tokens on chain X that we
@@ -1435,9 +1439,9 @@ buyer, then call the balance-sending contract to message chain X, signaling that
 balance on chain Y has now been updated with the requested tokens.
 
 The one-sided locking property is important: it enables the solver to use contentious state on chain
-Y (e.g. an AMM pool) to acquire the token without incuring lock contention. On chain X's side, the
-escrow contract is not contended at all, as the only people trying to write to it are the solvers
-trying to fill the request — only one of which may succeed anyway.
+Y (e.g. an AMM pool, an NFT marketplace) to acquire the token without incuring lock contention. On
+chain X's side, the escrow contract is not contended at all, as the only people trying to write to
+it are the solvers trying to fill the request — only one of which may succeed anyway.
 
 Interestingly, atomicity protects the solver here. If we use the same setup without atomicity (only
 asynchronous message-passing), then two solvers could fill the buyer's order (sending him tokens on
@@ -1556,10 +1560,10 @@ data can be stored or even represented:
 The first alternative consumes precious blockchain storage space, which is usually permanently
 occupied (at least until blockchains adopt data expiry).
 
-The second alternative has consequences for messaging initiated by smart contract, as only the
-first option (emitted in an event) makes it easy to retrieve the message by following only the
-source chain. The second option is only suitable for messaging initiated directly by users and not
-mediated by intermediate smart contracts (and retrieving the calldata does require some advanced
+The second alternative has consequences for messaging initiated by smart contract, as only the first
+option (emitted in an event) makes it easy to retrieve the message by following only the source
+chain. Storing the data in calldata is only suitable for messaging initiated directly by users and
+not mediated by intermediate smart contracts (and retrieving the calldata does require some advanced
 node data querying — not simple JSON-RPC calls). The third option requires extra coordination
 mechanisms to be present.
 
@@ -1639,7 +1643,7 @@ bridge providers) is not without tradeoffs: the token contract on every chain is
 the security risks of all the bridges that are allowed to mint into it.
 
 [xERC20][7281] tackles this risk by enabling token governance to set rate limits on the token flow
-from any given bridge. Ofcourse, the classical solution to the "wrapper of wrapper" problem is to
+from any given bridge. Of course, the classical solution to the "wrapper of wrapper" problem is to
 route every token through its canonical chain, though the UX of this "solution" is pretty
 horrendous. Another non-solution is introducing liquidity pools between all the wrappers. This can
 be made to sort-of work in the presence of liquidity providers that take upon themselves the task of
@@ -1650,7 +1654,7 @@ deployment. This is almost a fundamental trade-off, but it can be alleviated in 
 chain and bridging environment like our small Superchain model: if it is known that all chains have
 similar execution environment and that the bridges between any of these chains have guaranteed
 identical security properties, it could be allowed to permissionlessly or automatically deploy
-mirror token contracts on all of these chains. Note that is not generally possible in the graph
+mirror token contracts on all of these chains. Note that this is not generally possible in the graph
 Superchain model.
 
 ## Conclusions & Recommendations
