@@ -140,7 +140,7 @@ cross-chain transactions are represented on the source and destination chain, an
 design trade-offs for these interfaces.
 
 Finally, the [Conclusions & Recommendations](#conclusions--recommendations) section will summarize
-the findings of the report and givew some opinions and recommendations for the future.
+the findings of the report and give some opinions and recommendations for the future.
 
 ## Superchain Models
 
