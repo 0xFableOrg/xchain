@@ -4,57 +4,57 @@ By [Norswap](https://twitter.com/norswap),
 with the help of [Frederik Lührs](https://www.linkedin.com/in/frederik-luehrs/), [Heechang Kang (xpara)](https://x.com/xparadigms), [Naman Garg](https://x.com/namn_grg)  
 and the advice and insights of many others!
 
-----
+---
 
 <!-- TOC -->
-* [Cross-Chain Interoperability Report](#cross-chain-interoperability-report)
-  * [Context](#context)
-  * [Outline](#outline)
-  * [Superchain Models](#superchain-models)
-  * [Bridge Taxonomy](#bridge-taxonomy)
-  * [Bridge Properties](#bridge-properties)
-    * [Safety](#safety)
-    * [Liveness](#liveness)
-    * [Latency](#latency)
-    * [Incentives & Costs](#incentives--costs)
-      * [Relayers](#relayers)
-      * [Handling Variable Destination Chain Fees](#handling-variable-destination-chain-fees)
-      * [Validators, Provers and Challengers](#validators-provers-and-challengers)
-    * [Implementation Complexity](#implementation-complexity)
-    * [Summary](#summary)
-  * [Finality](#finality)
-    * [Definitions & Problem](#definitions--problem)
-    * [Cross-Chain Contingent Blocks](#cross-chain-contingent-blocks)
-    * [Shared Validity Sequencing (Dependency Mechanism)](#shared-validity-sequencing-dependency-mechanism)
-    * [Limitations and Attack Vectors](#limitations-and-attack-vectors)
-  * [Atomicity & Synchronicity](#atomicity--synchronicity)
-    * [Message-passing vs Bundling](#message-passing-vs-bundling)
-    * [Atomic Inclusion](#atomic-inclusion)
-      * [Shared Sequencing](#shared-sequencing)
-      * [Builder-Proposer Separation (PBS)](#builder-proposer-separation-pbs)
-      * [Reclaiming Safety](#reclaiming-safety)
-      * [Applications to the Superchain (Atomic Inclusion)](#applications-to-the-superchain-atomic-inclusion)
-    * [Atomic Execution](#atomic-execution)
-      * [Running Multiple Nodes](#running-multiple-nodes)
-      * [State Locking](#state-locking)
-      * [Crossbar System](#crossbar-system)
-      * [Shared Validity Sequencing (SVS) + PBS](#shared-validity-sequencing-svs--pbs)
-      * [Applications to the Superchain (Atomic Execution)](#applications-to-the-superchain-atomic-execution)
-      * [Domain-Specific Solutions](#domain-specific-solutions)
-    * [More Powerful Models](#more-powerful-models)
-  * [Messaging Formats & Interfaces](#messaging-formats--interfaces)
-    * [Landscape](#landscape)
-    * [Design Considerations](#design-considerations)
-    * [Token Layer](#token-layer)
-  * [Conclusions & Recommendations](#conclusions--recommendations)
-    * [Bridging Mechanisms](#bridging-mechanisms)
-    * [Latency](#latency-1)
-    * [Implementation Complexity](#implementation-complexity-1)
-    * [Atomicity](#atomicity)
-    * [Summary](#summary-1)
-<!-- TOC -->
 
-----
+- [Cross-Chain Interoperability Report](#cross-chain-interoperability-report)
+  - [Context](#context)
+  - [Outline](#outline)
+  - [Superchain Models](#superchain-models)
+  - [Bridge Taxonomy](#bridge-taxonomy)
+  - [Bridge Properties](#bridge-properties)
+    - [Safety](#safety)
+    - [Liveness](#liveness)
+    - [Latency](#latency)
+    - [Incentives & Costs](#incentives--costs)
+      - [Relayers](#relayers)
+      - [Handling Variable Destination Chain Fees](#handling-variable-destination-chain-fees)
+      - [Validators, Provers and Challengers](#validators-provers-and-challengers)
+    - [Implementation Complexity](#implementation-complexity)
+    - [Summary](#summary)
+  - [Finality](#finality)
+    - [Definitions & Problem](#definitions--problem)
+    - [Cross-Chain Contingent Blocks](#cross-chain-contingent-blocks)
+    - [Shared Validity Sequencing (Dependency Mechanism)](#shared-validity-sequencing-dependency-mechanism)
+    - [Limitations and Attack Vectors](#limitations-and-attack-vectors)
+  - [Atomicity & Synchronicity](#atomicity--synchronicity)
+    - [Message-passing vs Bundling](#message-passing-vs-bundling)
+    - [Atomic Inclusion](#atomic-inclusion)
+      - [Shared Sequencing](#shared-sequencing)
+      - [Builder-Proposer Separation (PBS)](#builder-proposer-separation-pbs)
+      - [Reclaiming Safety](#reclaiming-safety)
+      - [Applications to the Superchain (Atomic Inclusion)](#applications-to-the-superchain-atomic-inclusion)
+    - [Atomic Execution](#atomic-execution)
+      - [Running Multiple Nodes](#running-multiple-nodes)
+      - [State Locking](#state-locking)
+      - [Crossbar System](#crossbar-system)
+      - [Shared Validity Sequencing (SVS) + PBS](#shared-validity-sequencing-svs--pbs)
+      - [Applications to the Superchain (Atomic Execution)](#applications-to-the-superchain-atomic-execution)
+      - [Domain-Specific Solutions](#domain-specific-solutions)
+    - [More Powerful Models](#more-powerful-models)
+  - [Messaging Formats & Interfaces](#messaging-formats--interfaces)
+    - [Landscape](#landscape)
+    - [Design Considerations](#design-considerations)
+    - [Token Layer](#token-layer)
+  - [Conclusions & Recommendations](#conclusions--recommendations)
+  _ [Bridging Mechanisms](#bridging-mechanisms)
+  _ [Latency](#latency-1)
+  _ [Implementation Complexity](#implementation-complexity-1)
+  _ [Atomicity](#atomicity) \* [Summary](#summary-1)
+  <!-- TOC -->
+
+---
 
 ## Context
 
@@ -205,7 +205,7 @@ properties later.
 else to do so). This is the model used by the rollup bridges in the L1 to L2 direction.
 
 **Light client bridges** are systems where the destination chain runs or verifies the execution a
-light client of the source chain. By *light client*, we mean a system that verifies the consensus of
+light client of the source chain. By _light client_, we mean a system that verifies the consensus of
 the source chain, but does not verify the execution of transactions (1). This is, after a certain
 point of view (2), no less secure, because a chain's consensus usually also posesses the authority
 to upgrade the chain (and so to "allow" any execution outcome). This category also includes bridges
@@ -344,7 +344,7 @@ We identify 5 key bridge properties:
 - implementation complexity
 
 **Safety** characterizes the conditions under which the bridge might malfunction, either
-by delivering messages that weren't sent, or by *never* delivering sent messages. It can also be
+by delivering messages that weren't sent, or by _never_ delivering sent messages. It can also be
 characterized in terms of the possible economic losses incurred by the bridge's malfunction.
 
 **Liveness** characterizes the conditions under which the bridge might stop functioning, either by
@@ -683,7 +683,7 @@ As an aside: such a mechanism could also double as a way to replay delivered but
 This could happen if the message triggers execution that is only transiently failing (e.g. because
 of contract state), or if the user set a gas limit that is too low.
 
-In reality, bridge operator *sometimes* charge a flat fee that they know to be profitable in the
+In reality, bridge operator _sometimes_ charge a flat fee that they know to be profitable in the
 foreseeable future, or sometimes even operate relayers without explicit payments, if the destination
 chain fees are low and expected to remain so — revenue being made at the application layer, e.g. by
 fees for token transfers. It is also possible for bridge protocol to incentivize relayers with their
@@ -812,7 +812,7 @@ sections (which identifies the actors that do need to be incentivized).
 - optimistic bridges
   - safety: single honest challenger assumption
   - liveness: relayers (bonded or permissioned)
-  - latency: > source chain finality + challenge period 
+  - latency: > source chain finality + challenge period
   - complexity: medium (bidirectional)
 - reverse bridges
   - safety: only permissionless actions, forward bridge must be safe or risk to relayers
@@ -991,7 +991,7 @@ transactions to be included no matter what.
 
 ## Atomicity & Synchronicity
 
-*Atomicity* for a set of operations means that either all the operations occur, or none of them
+_Atomicity_ for a set of operations means that either all the operations occur, or none of them
 occur.
 
 In the context of cross-chain messaging, atomicity can apply to either transaction inclusion or
@@ -1007,7 +1007,7 @@ their respective chains. In practice, this generally also needs to happen at the
 it could cause unwanted rollbacks, though certain designs propose to lock part of the state to avoid
 this happening, which can make this requirement somewhat looser.
 
-We use *synchronicity* in the sense used in many programming language: an asynchronous operation is
+We use _synchronicity_ in the sense used in many programming language: an asynchronous operation is
 fired off and its result is not immediately available, whereas a synchronous operation is one whose
 result we wait on.
 
@@ -1075,7 +1075,7 @@ A different way to achieve bridging is to create an atomic bundle containing one
 source chain and one for the destination chain, where all transactions that must be included or
 successfully executed on their respective chains.
 
-Atomic inclusion, *requires* the use of bundles.
+Atomic inclusion, _requires_ the use of bundles.
 
 Atomic execution can work with message passing or bundles. The message-passing model is more
 powerful, because it can dynamically adapt the message being sent based on the state of the source
@@ -1220,7 +1220,7 @@ knowingly know will fail. But if that is an issue, we also need to consider that
 scenarios where most transactions fail, like NFT mint events, or just period of high price
 volatility. If the system is restricted to transactions that always work, it's not more powerful
 than atomic inclusion. They also mention griefing by locking a lot of state, but fail to touch on
-the issue of locking *valuable* state.
+the issue of locking _valuable_ state.
 
 **CORRECTION:** The discussion of AggLayer in this document is based on previously published
 documents. I have since then been informed that the design changed and AggLayer will not feature
@@ -1266,7 +1266,7 @@ crossbar system would perform stateless execution of atomic cross-chain bundles.
 
 The crossbar system receives atomic transaction bundles, along with state access lists for each
 transaction, as well as state proofs for each piece of accessed state, made against state roots. It
-then outputs a set of transactions that each participating chain *must* include at the start of
+then outputs a set of transactions that each participating chain _must_ include at the start of
 their next block.
 
 There are again no silver bullet here, and there needs to be a bridging mechanism for the crossbar
@@ -1295,7 +1295,7 @@ reduces chain throughput.
 The multi-node solution and the PBS solution (that we'll present right after) have a weaker version
 of this problem: whenever a cross-chain transaction is processed, the block building for all the
 chains that the transaction touches is temporarily interrupted. The crossbar rollup solution is
-worse, because it blocks all the rollups while processing *all* the cross-chain transactions.
+worse, because it blocks all the rollups while processing _all_ the cross-chain transactions.
 
 The crossbar system helps with scaling a cross-chain system but does not fundamentally solve the
 issue: by delegating the execution of all cross-chain transaction to a single system (the crossbar
@@ -1517,7 +1517,7 @@ be pluralistic (i.e. not tied to any specific provider). This list is not intend
 
 [hyperlane]: https://docs.hyperlane.xyz/docs/reference/messaging/messaging-interface
 [mma]: https://github.com/MultiMessageAggregation/multibridge
-[hashi]: https://ethresear.ch/t/hashi-a-principled-approach-to-bridges/14725
+[hashi]: https://crosschain-alliance.gitbook.io/hashi
 
 Let's also mention Optimism's [bridging spec][op-bridge] and [interop spec][op-interop] as examples
 of messaging standards between L1 and L2, and accross L2 (respectively)
@@ -1527,9 +1527,9 @@ of messaging standards between L1 and L2, and accross L2 (respectively)
 
 Finally, some standard or proposed solutions focus specifically on bridging tokens, for instance:
 
-- [ERC-7281: Sovereign Bridged Token (aka xERC20)][7281] 
+- [ERC-7281: Sovereign Bridged Token (aka xERC20)][7281]
 - [Optimism Interop Token Standard (SuperchainERC20)][superchainerc20]
-  
+
 [7281]: https://github.com/ethereum/ERCs/pull/89/files
 [superchainerc20]: https://specs.optimism.io/interop/token-bridging.html
 
@@ -1552,10 +1552,10 @@ data can be stored or even represented:
 
 1. It could simply be posted as-is (or potentially compressed) and stored in the outbox.
 2. Alternatively, only a hash of the data can be stored in the outbox. The actual data can then either:
-    1. be emitted in an event.
-    2. live in the source chain calldata.
-    3. not be posted onchain at all, and only communicated offchain to a relayer, or relayed by the
-       submitter himself. It could also be temporarily stored on an alternative data availability (DA) layer.
+   1. be emitted in an event.
+   2. live in the source chain calldata.
+   3. not be posted onchain at all, and only communicated offchain to a relayer, or relayed by the
+      submitter himself. It could also be temporarily stored on an alternative data availability (DA) layer.
 
 The first alternative consumes precious blockchain storage space, which is usually permanently
 occupied (at least until blockchains adopt data expiry).
@@ -1752,11 +1752,11 @@ why atomicity is necessary, but it doesn't seem crazy to me that this problem co
 solved (if not quite as elegantly) via fast non-atomic message passing. When capital can safely move
 between chains at the speed of block production, atomicity is merely a cherry on top.
 
-But okay, atomicity *is* cool, and it fullfills one of the original promises of Ethereum: it gives
+But okay, atomicity _is_ cool, and it fullfills one of the original promises of Ethereum: it gives
 us the world's computer, a uniform computing layer. It's a worthy goal to strive towards. How then?
 
 We have looked at three solutions: state locking, crossbar system, SVS + PBS. These all have
-trade-offs. 
+trade-offs.
 
 State locking struggles with lock contention: if multiple chains want to access the same state, a
 lot of synchronous network communication will be required, adding latency. Locks being leased for

@@ -24,10 +24,10 @@ bridge.
     [withdrawals](https://github.com/ethereum-optimism/optimism/blob/develop/specs/withdrawals.md).
 - [MultiMessageAggregation](https://github.com/MultiMessageAggregation/multibridge)
   - Send a cross-chain message through multiple bridges.
-- [Hashi](https://hashi-doc.gitbook.io/hashi/v0.1/introduction)
+- [Hashi](https://crosschain-alliance.gitbook.io/hashi/introduction/what-is-hashi)
   - Allow for cross-chain messaging by sending block headers aggregated through multiple bridges
-- [CryptoLink](https://docs.cryptolink.tech/solutions/build-cross-chain-products) 
-- [Sygma](https://docs.buildwithsygma.com/) 
+- [CryptoLink](https://docs.cryptolink.tech/solutions/build-cross-chain-products)
+- [Sygma](https://docs.buildwithsygma.com/)
 
 ## Non-Generic Models
 
