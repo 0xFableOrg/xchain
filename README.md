@@ -48,11 +48,13 @@ and the advice and insights of many others!
     - [Design Considerations](#design-considerations)
     - [Token Layer](#token-layer)
   - [Conclusions & Recommendations](#conclusions--recommendations)
-  _ [Bridging Mechanisms](#bridging-mechanisms)
-  _ [Latency](#latency-1)
-  _ [Implementation Complexity](#implementation-complexity-1)
-  _ [Atomicity](#atomicity) \* [Summary](#summary-1)
-  <!-- TOC -->
+  - [Bridging Mechanisms](#bridging-mechanisms)
+  - [Latency](#latency-1)
+  - [Implementation Complexity](#implementation-complexity-1)
+  - [Atomicity](#atomicity)
+  - [Summary](#summary-1)
+
+<!-- TOC -->
 
 ---
 
