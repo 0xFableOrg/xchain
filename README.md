@@ -928,7 +928,7 @@ no reason the same principle can't be applied to other types of chains.
 However, with rollups that share the same DA layer, we can make the mechanism a lot more general.
 Instead of commiting to a block in the source chain, we commit to a DA layer block. In this way, if
 the DA layer re-orgs and makes the message disappear from the source chain, the message won't be
-delivered on the source chain either (as we commited to a DA layer block that no longer exists).
+delivered on the destination chain either (as we commited to a DA layer block that no longer exists).
 
 Additionally, this makes the mechanism much more general: a destination rollup can now accept
 messages from any source rollup that uses the same DA layer, as long as bridge operators can
