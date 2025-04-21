@@ -563,7 +563,7 @@ function, zkVMs have to prove a much larger amount of computation, as they are p
 of an EVM interpreter, whereas zkEVMs prove the EVM execution directly.
 
 Both types of prover (who share the underlying technology) have improved rapidly over the past few
-years. [In December 2002][zkevm3], Polygon zkEVM could prove 10M gas for ~0.30$ in 2.5 minutes (with
+years. [In December 2022][zkevm3], Polygon zkEVM could prove 10M gas for ~0.30$ in 2.5 minutes (with
 Poseidon, and note that full Ethereum blocks are 30M gas and that this isn't a reproducible
 benchmark). Over the past year, zkVM have been catching up. In August 2024, Succinct SP1 (a zkVM)
 was able to prove 10M gas (still with Poseidon) for ~0.14$ in about 11 minutes.
